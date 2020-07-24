@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VirtualMeeting</string>
+    <string name="app_name">Virtual Meeting</string>
     <string name="welcome_to">Welcome To</string>
     <string name="video_meeting_conference_app">Video Meeting | Conference App</string>
     <string name="sign_in_to_your_account">Sign in to your account</string>

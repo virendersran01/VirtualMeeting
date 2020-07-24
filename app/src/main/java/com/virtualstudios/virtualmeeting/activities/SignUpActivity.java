@@ -1,9 +1,11 @@
-package com.virtualstudios.virtualmeeting;
+package com.virtualstudios.virtualmeeting.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.virtualstudios.virtualmeeting.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

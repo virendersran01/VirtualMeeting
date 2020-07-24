@@ -1,8 +1,10 @@
-package com.virtualstudios.virtualmeeting;
+package com.virtualstudios.virtualmeeting.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.virtualstudios.virtualmeeting.R;
 
 public class MainActivity extends AppCompatActivity {
 
