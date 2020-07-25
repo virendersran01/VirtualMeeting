@@ -7,8 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.virtualstudios.virtualmeeting.R;
 import com.virtualstudios.virtualmeeting.utilities.Constants;
@@ -76,8 +83,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
-                .addOnCompleteListener(task -> {
+                .addOnSuccessListener(documentReference -> {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                    preferenceManager.putSting(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putSting(Constants.KEY_FIRST_NAME, inputFirstName.getText().toString());
                     preferenceManager.putSting(Constants.KEY_LAST_NAME, inputLastName.getText().toString());
                     preferenceManager.putSting(Constants.KEY_EMAIL, inputEmail.getText().toString());
