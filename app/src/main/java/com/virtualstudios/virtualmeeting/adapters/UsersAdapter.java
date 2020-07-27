@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.virtualstudios.virtualmeeting.R;
+import com.virtualstudios.virtualmeeting.listeners.UserListener;
 import com.virtualstudios.virtualmeeting.models.User;
 
 import java.util.List;
@@ -17,9 +18,11 @@ import java.util.List;
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
 
     private List<User> users;
+    private UserListener userListener;
 
-    public UsersAdapter(List<User> users) {
+    public UsersAdapter(List<User> users, UserListener userListener) {
         this.users = users;
+        this.userListener = userListener;
     }
 
     @NonNull
@@ -38,10 +41,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         return users.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+      class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textFirstChar, textUsername, textEmail;
-        ImageView imageAudioMeeting, imageViewVideoMeeting;
+        ImageView imageAudioMeeting, imageVideoMeeting;
     
          ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,7 +53,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
             textUsername = itemView.findViewById(R.id.textUsername);
             textEmail = itemView.findViewById(R.id.textEmail);
             imageAudioMeeting = itemView.findViewById(R.id.imageAudioMeeting);
-            imageViewVideoMeeting = itemView.findViewById(R.id.imageVideoMeeting);
+            imageVideoMeeting = itemView.findViewById(R.id.imageVideoMeeting);
 
         }
 
@@ -58,6 +61,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
              textFirstChar.setText(user.firstName.substring(0,1));
              textUsername.setText(String.format("%s %s", user.firstName, user.lastName));
              textEmail.setText(user.email);
+             imageAudioMeeting.setOnClickListener(view -> userListener.initiateAudioMeeting(user));
+             imageVideoMeeting.setOnClickListener(view -> userListener.initiateVideoMeeting(user));
         }
     }
 }
