@@ -1,5 +1,7 @@
 package com.virtualstudios.virtualmeeting.utilities;
 
+import java.util.HashMap;
+
 public class Constants {
 
     public static final String KEY_COLLECTION_USERS = "users";
@@ -12,4 +14,23 @@ public class Constants {
 
     public static final String KEY_PREFERENCE_NAME = "videoMeetingPreference";
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
+
+    public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
+    public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type ";
+
+    public static final String REMOTE_MSG_TYPE = "type";
+    public static final String REMOTE_MSG_INVITATION = "invitation";
+    public static final String REMOTE_MSG_MEETING_TYPE = "meetingType";
+    public static final String REMOTE_MSG_INVITER_TOKEN = "inviterToken";
+    public static final String REMOTE_MSG_DATA = "data";
+    public static final String REMOTE_MSG_REGISTRATION_IDS = "registrations_ids";
+
+    public static HashMap<String, String> getRemoteMessageHeaders(){
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put(
+                Constants.REMOTE_MSG_AUTHORIZATION,
+                "key=AAAAopXoFXU:APA91bEdFTaOSJLtebeR8IWjdDYF0jjoUjXQOGsbB1sHS5KTPyS6j0mI9prs1D7CLIl-8_czFycKLJI05CFa666sIqstmNpI67UsrHeTaXHb8urGnZ0JW53wYE97mGc4t_JsalNaiWWC");
+        headers.put(Constants.REMOTE_MSG_CONTENT_TYPE, "application/json");
+        return headers;
+    }
 }
