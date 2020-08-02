@@ -7,12 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.virtualstudios.virtualmeeting.R;
 import com.virtualstudios.virtualmeeting.models.User;
 import com.virtualstudios.virtualmeeting.network.ApiClient;
