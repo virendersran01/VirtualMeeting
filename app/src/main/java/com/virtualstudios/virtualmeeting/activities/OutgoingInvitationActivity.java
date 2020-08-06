@@ -36,7 +36,8 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
     private PreferenceManager preferenceManager;
     private String inviterToken = null;
-    String meetingRoom = null;
+    private String meetingRoom = null;
+    private String meetingType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,12 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         preferenceManager = new PreferenceManager(getApplicationContext());
 
         ImageView imageMeetingType = findViewById(R.id.imageMeetingType);
-        String meetingType = getIntent().getStringExtra("type");
+        meetingType = getIntent().getStringExtra("type");
         if (meetingType != null){
             if (meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
+            }else{
+                imageMeetingType.setImageResource(R.drawable.ic_audio);
             }
         }
 
@@ -173,13 +176,16 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                     try {
 
                         URL serverUrl = new URL("https://meet.jit.si");
-                        JitsiMeetConferenceOptions conferenceOptions =
-                                new JitsiMeetConferenceOptions.Builder()
-                                        .setServerURL(serverUrl)
-                                        .setWelcomePageEnabled(false)
-                                        .setRoom(meetingRoom)
-                                        .build();
-                        JitsiMeetActivity.launch(OutgoingInvitationActivity.this, conferenceOptions);
+
+                        JitsiMeetConferenceOptions.Builder builder = new JitsiMeetConferenceOptions.Builder();
+                        builder.setServerURL(serverUrl);
+                        builder.setWelcomePageEnabled(false);
+                        builder.setRoom(meetingRoom);
+                        if (meetingType.equals("audio")){
+                            builder.setVideoMuted(true);
+                        }
+
+                        JitsiMeetActivity.launch(OutgoingInvitationActivity.this, builder.build());
                         finish();
 
                     }catch (Exception exception){
